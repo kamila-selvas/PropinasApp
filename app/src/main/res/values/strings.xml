@@ -1,3 +1,41 @@
 <resources>
-    <string name="app_name">Propinas</string>
+    <string name="app_name">Calculadora de Propinas</string>
+    <string name="titulo_pantalla">Calculadora de Propinas</string>
+
+    <!-- Entradas del usuario -->
+    <string name="monto_label">Monto de la cuenta</string>
+    <string name="monto_placeholder">0.00</string>
+    <string name="monto_prefijo">$</string>
+    <string name="monto_error_invalido">Ingresa un monto mayor a cero</string>
+    <string name="propina_porcentaje_label">Porcentaje de propina: %d%%</string>
+    <string name="calidad_servicio_label">Calidad del servicio:</string>
+    <string name="servicio_malo">Malo (5%)</string>
+    <string name="servicio_regular">Regular (10%)</string>
+    <string name="servicio_bueno">Bueno (15%)</string>
+    <string name="servicio_excelente">Excelente (20%)</string>
+    <string name="personas_label">Número de personas: %d</string>
+    <string name="personas_incrementar">Incrementar personas</string>
+    <string name="personas_decrementar">Decrementar personas</string>
+    <string name="redondear_label">Redondear total hacia arriba</string>
+
+    <!-- Resumen y resultados -->
+    <string name="resumen_titulo">Resumen de la Cuenta</string>
+    <string name="subtotal_label">Subtotal:</string>
+    <string name="propina_monto_label">Propina:</string>
+    <string name="total_label">Total a pagar:</string>
+    <string name="por_persona_titulo">Pago Por Persona</string>
+    <string name="por_persona_monto">Cada persona paga:</string>
+
+    <!-- Niveles de propina -->
+    <string name="nivel_propina_bajo">Propina baja (&lt;10%)</string>
+    <string name="nivel_propina_medio">Propina aceptable (10% - 14%)</string>
+    <string name="nivel_propina_alto">¡Excelente propina! (&#8805;15%)</string>
+
+    <!-- Desglose por persona -->
+    <string name="desglose_titulo">Desglose por persona</string>
+    <string name="persona_item">Persona %d</string>
+    <string name="persona_item_ajuste">Persona %d (ajuste por redondeo)</string>
+
+    <!-- Estados -->
+    <string name="estado_inicial_mensaje">Ingresa un monto válido para calcular la propina y la división.</string>
 </resources>
