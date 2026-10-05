@@ -15,7 +15,9 @@ data class PropinaUiState(
     val subtotalTexto: String = "$0.00",
     val montoPropinaTexto: String = "$0.00",
     val totalTexto: String = "$0.00",
-    val montoPorPersonaTexto: String = "$0.00"
+    val montoPorPersonaTexto: String = "$0.00",
+    val nombreEstudiante: String = "",
+    val matriculaEstudiante: String = ""
 )
 
 class PropinaViewModel : ViewModel() {
@@ -25,6 +27,14 @@ class PropinaViewModel : ViewModel() {
 
     init {
         _uiState.update { recalcularEstado(it) }
+    }
+
+    fun onNombreChange(nuevoNombre: String) {
+        _uiState.update { it.copy(nombreEstudiante = nuevoNombre) }
+    }
+
+    fun onMatriculaChange(nuevaMatricula: String) {
+        _uiState.update { it.copy(matriculaEstudiante = nuevaMatricula) }
     }
 
     fun onMontoChange(nuevoMonto: String) {

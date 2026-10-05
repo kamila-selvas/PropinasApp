@@ -7,7 +7,7 @@
     <string name="monto_placeholder">0.00</string>
     <string name="monto_prefijo">$</string>
     <string name="monto_error_invalido">Ingresa un monto mayor a cero</string>
-    <string name="propina_porcentaje_label">Porcentaje de propina: %d%%</string>
+    <string name="propina_porcentaje_label">Porcentaje de propina: %1$d%%</string>
     <string name="calidad_servicio_label">Calidad del servicio:</string>
     <string name="servicio_malo">Malo (5%)</string>
     <string name="servicio_regular">Regular (10%)</string>
@@ -35,6 +35,13 @@
     <string name="desglose_titulo">Desglose por persona</string>
     <string name="persona_item">Persona %d</string>
     <string name="persona_item_ajuste">Persona %d (ajuste por redondeo)</string>
+
+    <!-- Datos del Alumno -->
+    <string name="alumno_titulo">Datos del Alumno</string>
+    <string name="nombre_label">Nombre del alumno</string>
+    <string name="matricula_label">Matrícula</string>
+    <string name="nombre_resultado">Alumno: %s</string>
+    <string name="matricula_resultado">Matrícula: %s</string>
 
     <!-- Estados -->
     <string name="estado_inicial_mensaje">Ingresa un monto válido para calcular la propina y la división.</string>

@@ -62,6 +62,35 @@ fun PropinaPage(
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
+            // Campos de entrada para Nombre y Matrícula del Alumno
+            OutlinedTextField(
+                value = uiState.nombreEstudiante,
+                onValueChange = viewModel::onNombreChange,
+                label = { Text(stringResource(R.string.nombre_label)) },
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            OutlinedTextField(
+                value = uiState.matriculaEstudiante,
+                onValueChange = viewModel::onMatriculaChange,
+                label = { Text(stringResource(R.string.matricula_label)) },
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            // ⚡ LLAMADA AL COMPOSABLE CONDICIONAL
+            // Solo se ejecuta y dibuja cuando los estados TIENEN valor (no están vacíos)
+            if (uiState.nombreEstudiante.isNotEmpty() || uiState.matriculaEstudiante.isNotEmpty()) {
+                TarjetaEstudiante(
+                    nombre = uiState.nombreEstudiante,
+                    matricula = uiState.matriculaEstudiante
+                )
+            }
+
+            HorizontalDivider()
+
+            // Campo de Entrada: Monto de la cuenta
             OutlinedTextField(
                 value = uiState.montoInput,
                 onValueChange = viewModel::onMontoChange,
@@ -79,6 +108,7 @@ fun PropinaPage(
                 modifier = Modifier.fillMaxWidth()
             )
 
+            // Campo de Entrada: Porcentaje de propina (Slider)
             Column(modifier = Modifier.fillMaxWidth()) {
                 Text(
                     text = stringResource(R.string.propina_porcentaje_label, uiState.porcentajePropina),
@@ -93,6 +123,7 @@ fun PropinaPage(
                 )
             }
 
+            // Campo de Entrada: Cantidad de personas (+/-)
             Column(modifier = Modifier.fillMaxWidth()) {
                 Text(
                     text = stringResource(R.string.personas_label, uiState.numPersonas),
@@ -128,6 +159,7 @@ fun PropinaPage(
 
             HorizontalDivider()
 
+            // Tarjeta de Resumen de Totales
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
@@ -149,6 +181,7 @@ fun PropinaPage(
                 }
             }
 
+            // Tarjeta Destacada: Pago por persona
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(
@@ -171,6 +204,44 @@ fun PropinaPage(
                         color = MaterialTheme.colorScheme.primary
                     )
                 }
+            }
+        }
+    }
+}
+@Composable
+private fun TarjetaEstudiante(
+    nombre: String,
+    matricula: String,
+    modifier: Modifier = Modifier
+) {
+    Card(
+        modifier = modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.secondaryContainer,
+            contentColor = MaterialTheme.colorScheme.onSecondaryContainer
+        ),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            Text(
+                text = stringResource(R.string.alumno_titulo),
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold
+            )
+            if (nombre.isNotEmpty()) {
+                Text(
+                    text = stringResource(R.string.nombre_resultado, nombre),
+                    style = MaterialTheme.typography.bodyLarge
+                )
+            }
+            if (matricula.isNotEmpty()) {
+                Text(
+                    text = stringResource(R.string.matricula_resultado, matricula),
+                    style = MaterialTheme.typography.bodyLarge
+                )
             }
         }
     }
