@@ -7,10 +7,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import java.util.Locale
 
-/**
- * Estado inmutable de la UI.
- * Almacena las entradas del usuario y los resultados calculados formateados.
- */
 data class PropinaUiState(
     val montoInput: String = "",
     val porcentajePropina: Int = 15,
@@ -22,20 +18,14 @@ data class PropinaUiState(
     val montoPorPersonaTexto: String = "$0.00"
 )
 
-/**
- * ViewModel que maneja la lógica de negocio y mantiene el estado en memoria con StateFlow.
- */
 class PropinaViewModel : ViewModel() {
 
-    // Backing Property: Estado privado mutable (_uiState) y público inmutable (uiState)
     private val _uiState = MutableStateFlow(PropinaUiState())
     val uiState: StateFlow<PropinaUiState> = _uiState.asStateFlow()
 
     init {
         _uiState.update { recalcularEstado(it) }
     }
-
-    // --- EVENTOS UDF (Flujo Unidireccional de Datos) ---
 
     fun onMontoChange(nuevoMonto: String) {
         val montoLimpio = nuevoMonto.filter { it.isDigit() || it == '.' || it == ',' }
@@ -58,8 +48,6 @@ class PropinaViewModel : ViewModel() {
             recalcularEstado(estado.copy(numPersonas = nuevasPersonas.coerceIn(1, 20)))
         }
     }
-
-    // --- LÓGICA DE CÁLCULO ---
 
     private fun recalcularEstado(estado: PropinaUiState): PropinaUiState {
         val monto = estado.montoInput.toDoubleOrNull()

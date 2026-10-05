@@ -36,15 +36,11 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlin.math.roundToInt
 
-/**
- * Archivo único de UI (Page) que contiene la pantalla principal de la calculadora.
- */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PropinaPage(
     viewModel: PropinaViewModel = viewModel()
 ) {
-    // Recolecta el StateFlow de forma reactiva y segura con el ciclo de vida
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     Scaffold(
@@ -66,7 +62,6 @@ fun PropinaPage(
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            // 1. Campo de Entrada: Monto de la cuenta
             OutlinedTextField(
                 value = uiState.montoInput,
                 onValueChange = viewModel::onMontoChange,
@@ -84,7 +79,6 @@ fun PropinaPage(
                 modifier = Modifier.fillMaxWidth()
             )
 
-            // 2. Campo de Entrada: Porcentaje de propina (Slider)
             Column(modifier = Modifier.fillMaxWidth()) {
                 Text(
                     text = stringResource(R.string.propina_porcentaje_label, uiState.porcentajePropina),
@@ -99,7 +93,6 @@ fun PropinaPage(
                 )
             }
 
-            // 3. Campo de Entrada: Cantidad de personas (+/-)
             Column(modifier = Modifier.fillMaxWidth()) {
                 Text(
                     text = stringResource(R.string.personas_label, uiState.numPersonas),
@@ -135,7 +128,6 @@ fun PropinaPage(
 
             HorizontalDivider()
 
-            // 4. Tarjeta de Resumen de Totales
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
@@ -157,7 +149,6 @@ fun PropinaPage(
                 }
             }
 
-            // 5. Tarjeta Destacada: Pago por persona
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(
@@ -185,9 +176,6 @@ fun PropinaPage(
     }
 }
 
-/**
- * Fila auxiliar para mostrar etiqueta y valor en la tarjeta de resumen.
- */
 @Composable
 private fun FilaResultado(
     label: String,
